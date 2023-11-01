@@ -1,3 +1,4 @@
+import { Video } from "expo-av";
 import React from "react";
 import { FaCamera, FaVideo } from "react-icons/fa";
 import { Image, Text, View } from "react-native";
@@ -12,7 +13,7 @@ function Avatar({ image, video }) {
         <Text style={styles.text__name}>Thay đổi ảnh</Text>
       </View>
       <View style={styles.body__video}>
-        <Image style={styles.img__avatar} source={video ? video : null} />
+        <Video style={styles.video__avatar} source={video ? video : null} />
         <FaVideo style={styles.icon} />
         <Text style={styles.text__name}>Thay đổi video</Text>
       </View>
