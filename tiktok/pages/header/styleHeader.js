@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff",
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1,
   },
   headerIcon: {
     position: "absolute",
