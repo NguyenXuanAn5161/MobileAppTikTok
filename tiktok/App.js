@@ -1,34 +1,153 @@
+import {
+  createBottomTabNavigator,
+  useBottomTabBarHeight,
+} from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { StyleSheet } from "react-native";
-// import Setting from "./pages/setting/setting";
-import Profile from "./pages/profile/profile";
+import { useState } from "react";
+import { FlatList, Image, StyleSheet } from "react-native";
+import ProfileScreenComponent from "./src/component/ProfileScreenComponent";
+import VideoItem from "./src/component/VideoItem";
+import { data, windowHeight } from "./src/video/constain";
 
-const Stack = createStackNavigator();
+const BottomTab = createBottomTabNavigator();
+
+const HomeScreen = () => {
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+
+  const bottomTabHeight = useBottomTabBarHeight();
+
+  return (
+    <FlatList
+      data={data}
+      pagingEnabled
+      renderItem={({ item, index }) => (
+        <VideoItem data={item} isActive={activeVideoIndex === index} />
+      )}
+      onScroll={(e) => {
+        const index = Math.round(
+          e.nativeEvent.contentOffset.y / (windowHeight - bottomTabHeight)
+        );
+        setActiveVideoIndex(index);
+      }}
+    />
+  );
+};
+
+const ProfileScreen = () => {
+  return <ProfileScreenComponent />;
+};
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {/* <Stack.Screen
-          options={{ headerShown: false }}
-          name="Setting"
-          component={Setting}
-        /> */}
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Profile"
-          component={Profile}
+      <BottomTab.Navigator
+        screenOptions={{
+          tabBarStyle: { backgroundColor: "black" },
+          headerShown: false,
+          tabBarActiveTintColor: "white",
+        }}
+      >
+        {/* Nut Home */}
+        <BottomTab.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={require("./assets/images/home.png")}
+                style={[
+                  styles.bottomTabIcon,
+                  focused && styles.bottomTabIconFocused,
+                ]}
+              />
+            ),
+          }}
         />
-      </Stack.Navigator>
+
+        {/* Nut Search */}
+        <BottomTab.Screen
+          name="Discover"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={require("./assets/images/search.png")}
+                style={[
+                  styles.bottomTabIcon,
+                  focused && styles.bottomTabIconFocused,
+                ]}
+              />
+            ),
+          }}
+        />
+
+        {/* Nut them video */}
+        <BottomTab.Screen
+          name="NewVideo"
+          component={HomeScreen}
+          options={{
+            tabBarLabel: () => null,
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={require("./assets/images/new-video.png")}
+                style={[
+                  styles.newVideoButton,
+                  focused && styles.bottomTabIconFocused,
+                ]}
+              />
+            ),
+          }}
+        />
+
+        {/* Nut message */}
+        <BottomTab.Screen
+          name="inbox"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={require("./assets/images/message.png")}
+                style={[
+                  styles.bottomTabIcon,
+                  focused && styles.bottomTabIconFocused,
+                ]}
+              />
+            ),
+          }}
+        />
+
+        {/* Nut profie */}
+        <BottomTab.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={require("./assets/images/user.png")}
+                style={[
+                  styles.bottomTabIcon,
+                  focused && styles.bottomTabIconFocused,
+                ]}
+              />
+            ),
+          }}
+        />
+      </BottomTab.Navigator>
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  bottomTabIcon: {
+    width: 20,
+    height: 20,
+    tintColor: "grey",
+  },
+  bottomTabIconFocused: {
+    tintColor: "white",
+  },
+  newVideoButton: {
+    width: 48,
+    height: 24,
   },
 });
