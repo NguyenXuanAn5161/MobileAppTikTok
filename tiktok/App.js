@@ -1,8 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet } from "react-native";
-import Profile from "./pages/profile/profile";
 // import Setting from "./pages/setting/setting";
+import Profile from "./pages/profile/profile";
 
 const Stack = createStackNavigator();
 export default function App() {
