@@ -24,20 +24,43 @@ export default function Profile() {
           <Feather name="menu" size={22} style={styles.text2} />
         </TouchableOpacity>
       </View>
-      <View style={styles.midbar}>
+      <View style={styles.userName}>
         <Avatar.Icon size={80} icon={"account"}/>
-
+        <Text style={styles.accountText}>@xuanan</Text>
       </View>
-
-        
+      <View style={styles.counterCount}>
+        <View style={styles.counterItems}>
+          <Text style={styles.countText}>14</Text>
+          <Text style={styles.countLabel}>Following</Text>
+        </View>
+        <View style={styles.counterItems}>
+          <Text style={styles.countText}>38</Text>
+          <Text style={styles.countLabel}>Followers</Text>
+        </View>
+        <View style={styles.counterItems}>
+          <Text style={styles.countText}>91</Text>
+          <Text style={styles.countLabel}>Likes</Text>
+        </View>
+      </View>
+      <View style={styles.userButton}>
+        <View>
+        <TouchableOpacity style={styles.grayOutLineButton}>
+          <Text style={{fontWeight: 'bold', fontSize: 15}}>Edit profile</Text>
+        </TouchableOpacity>
+        </View>
+        <View style={{paddingLeft:30}}>
+        <TouchableOpacity style={styles.grayOutLineButton1}>
+        <Feather name="bookmark" size={18} color="black" style={{textAlign: 'center'}} />
+        </TouchableOpacity>
+        </View>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1,
-        alignItems: 'center'
+      flex: 1,
     },
     navbar:{
         flexDirection: 'row',
@@ -64,10 +87,56 @@ const styles = StyleSheet.create({
     text2:{
       marginTop: '5px'
     },
-    midbar:{
+    userName:{
       paddingVertical: 20,
       alignItems: 'center',
       backgroundColor: 'white',
+      borderColor: 'black',
+    },
+    accountText:{
+      padding: 20,
+      fontWeight: 'bold',
+      fontSize: 17,
+    },
+    counterCount:{
+      backgroundColor: 'white',
+      flexDirection: 'row',
+      paddingHorizontal: 50,
+      paddingBottom: 10,
+      marginTop:'-30px'
+    },
+    counterItems:{
+      flex: 1,
+      alignItems: 'center',
+    },
+    countText:{
+      fontWeight: 'bold',
+      fontSize: 16,
+    },
+    countLabel:{
+      color: 'gray',
+      fontSize: 11,
+    },
+    userButton:{
+      backgroundColor: 'white',
+      flexDirection: 'row',
+      justifyContent:'center'
+    },
+    grayOutLineButton:{
+      borderColor: 'lightgray',
+      borderWidth: 1,
+      borderRadius: 4,
+      paddingVertical: 10,
+      paddingHorizontal: 30,
+      
+    },
+    grayOutLineButton1:{
+      borderColor: 'lightgray',
+      borderWidth: 1,
+      borderRadius: 4,
+      width: '45px',
+      paddingVertical: 10,
     }
+      
 
 })
