@@ -1,19 +1,42 @@
-import React from 'react';
-import { Image, StyleSheet, View } from "react-native";
-
-import ProfileScreenComponent from "./src/component/ProfileScreenComponent";
-
+import {
+  createBottomTabNavigator,
+  useBottomTabBarHeight,
+} from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-
+import { useState } from "react";
+import { FlatList, Image, StyleSheet } from "react-native";
+import ProfileScreenComponent from "./src/component/ProfileScreenComponent";
+import VideoItem from "./src/component/VideoItem";
+import { data, windowHeight } from "./src/video/constain";
 
 const BottomTab = createBottomTabNavigator();
+
 const HomeScreen = () => {
-  return null;
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+
+  const bottomTabHeight = useBottomTabBarHeight();
+
+  return (
+    <FlatList
+      data={data}
+      pagingEnabled
+      renderItem={({ item, index }) => (
+        <VideoItem data={item} isActive={activeVideoIndex === index} />
+      )}
+      onScroll={(e) => {
+        const index = Math.round(
+          e.nativeEvent.contentOffset.y / (windowHeight - bottomTabHeight)
+        );
+        setActiveVideoIndex(index);
+      }}
+    />
+  );
 };
+
 const ProfileScreen = () => {
   return <ProfileScreenComponent />;
 };
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -31,7 +54,7 @@ export default function App() {
           options={{
             tabBarIcon: ({ focused }) => (
               <Image
-                source={require('./assets/image/home.png')}
+                source={require("./assets/images/home.png")}
                 style={[
                   styles.bottomTabIcon,
                   focused && styles.bottomTabIconFocused,
@@ -48,7 +71,7 @@ export default function App() {
           options={{
             tabBarIcon: ({ focused }) => (
               <Image
-                source={require('./assets/image/search.png')}
+                source={require("./assets/images/search.png")}
                 style={[
                   styles.bottomTabIcon,
                   focused && styles.bottomTabIconFocused,
@@ -66,7 +89,7 @@ export default function App() {
             tabBarLabel: () => null,
             tabBarIcon: ({ focused }) => (
               <Image
-                source={require('./assets/image/new-video.png')}
+                source={require("./assets/images/new-video.png")}
                 style={[
                   styles.newVideoButton,
                   focused && styles.bottomTabIconFocused,
@@ -83,7 +106,7 @@ export default function App() {
           options={{
             tabBarIcon: ({ focused }) => (
               <Image
-                source={require('./assets/image/message.png')}
+                source={require("./assets/images/message.png")}
                 style={[
                   styles.bottomTabIcon,
                   focused && styles.bottomTabIconFocused,
@@ -100,7 +123,7 @@ export default function App() {
           options={{
             tabBarIcon: ({ focused }) => (
               <Image
-                source={require('./assets/image/user.png')}
+                source={require("./assets/images/user.png")}
                 style={[
                   styles.bottomTabIcon,
                   focused && styles.bottomTabIconFocused,

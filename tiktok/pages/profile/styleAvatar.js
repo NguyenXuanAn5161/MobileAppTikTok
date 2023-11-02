@@ -25,14 +25,6 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     opacity: 0.6,
   },
-  video__avatar: {
-    backgroundColor: "gray",
-    width: "70%",
-    aspectRatio: 1, // Đảm bảo tỷ lệ khung hình 1:1 (tạo hình tròn)
-    borderRadius: "50%", // Đặt border-radius để tạo hình tròn
-    resizeMode: "contain",
-    opacity: 0.6,
-  },
   icon: {
     position: "absolute",
     bottom: "50%",
