@@ -1,17 +1,19 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View, Pressable } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Feather} from '@expo/vector-icons'
 import {Avatar} from 'react-native-paper'
 import { AntDesign, MaterialIcons, Ionicons, Entypo} from '@expo/vector-icons'
+import VideoItem from "../../src/component/VideoItem";
+import { data, windowHeight } from "../../src/video/constain";
 
 const BottomTab = createBottomTabNavigator();
 
 
 export default function Profile() {
   return (
-    <View styles={styles.container}>
+    <View style={styles.container}>
       <View style={styles.navbar}>
         <TouchableOpacity>
           <AntDesign name="adduser" size={26} color="black" />
@@ -50,20 +52,20 @@ export default function Profile() {
       </View>
       <View style={styles.userButton}>
         <View>
-        <TouchableOpacity style={styles.grayOutLineButton}>
-          <Text style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center'}}>Edit profile</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.grayOutLineButton}>
+            <Text style={{fontWeight: 'bold', fontSize: 15, textAlign: 'center'}}>Edit profile</Text>
+          </TouchableOpacity>
         </View>
         <View style={{paddingLeft:30}}>
-        <TouchableOpacity style={styles.grayOutLineButton1}>
-        <Feather name="bookmark" size={18} color="black" style={{textAlign: 'center'}} />
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.grayOutLineButton1}>
+            <Feather name="bookmark" size={18} color="black" style={{textAlign: 'center'}} />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.bioContainer}>
         <TouchableOpacity>
           <Text style={styles.bioText}>To tap add bio</Text>
-          </TouchableOpacity>
+        </TouchableOpacity>
       </View>
       <View style={styles.listContainer}>
         <Feather name="menu" size={22}/>  
@@ -72,6 +74,13 @@ export default function Profile() {
       <View style={styles.underLine}>
           <Text style={{ fontWeight: 'bold', fontSize:10, marginTop:'-10px'}}>__________</Text>
       </View>
+      <FlatList
+          data={data}
+          numColumns={3}
+          renderItem={({ item}) => (
+          <Image source={item.avatarUri} style={{ width: 100, height: 200, flex: 1/3}}/>
+          )}
+        />
     </View>
   )
 }
@@ -79,6 +88,7 @@ export default function Profile() {
 const styles = StyleSheet.create({
     container:{
       flex: 1,
+      backgroundColor:'white',
     },
     navbar:{
         flexDirection: 'row',
@@ -87,7 +97,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderBottomWidth: 1,
         borderColor: 'black',
-        flex: 1,
         justifyContent:'space-between'
        
     },
@@ -177,7 +186,11 @@ const styles = StyleSheet.create({
       paddingBottom: 3,
       borderBottomWidth: 1,
       borderColor: 'black',
-    }
+    },
+    videoThumbnail:{
+      backgroundColor:'white',
+    },
+
       
 
 })
