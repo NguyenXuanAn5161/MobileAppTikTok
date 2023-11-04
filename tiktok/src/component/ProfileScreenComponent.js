@@ -1,5 +1,6 @@
 import { AntDesign, Entypo, Feather, Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
   FlatList,
@@ -15,6 +16,7 @@ import { data } from "../../src/video/constain";
 const BottomTab = createBottomTabNavigator();
 
 export default function Profile() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.navbar}>
@@ -30,7 +32,11 @@ export default function Profile() {
           color="black"
           style={styles.text1}
         />
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            // navigation.navigate("Setting");
+          }}
+        >
           <Entypo name="dots-three-horizontal" size={24} color="black" />
         </TouchableOpacity>
       </View>
