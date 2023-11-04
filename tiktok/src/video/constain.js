@@ -33,4 +33,17 @@ export const data = [
         comments: 2453,
         avatarUri: 'https://wallpaperaccess.com/full/1669289.jpg',
     },
+    {
+        id: 4,
+        channelName: 'yummy',
+        uri: 'https://v.pinimg.com/videos/mc/720p/c9/22/d8/c922d8391146cc2fdbeb367e8da0d61f.mp4',
+        caption: 'Brown little puppy #cute #puppy',
+        musicName: 'Song #3',
+        likes: 9385,
+        comments: 2453,
+        avatarUri: 'https://wallpaperaccess.com/full/1669289.jpg',
+    },
+    
+    
+
 ]

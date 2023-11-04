@@ -1,14 +1,22 @@
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { AntDesign, Entypo, Feather, Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Avatar } from "react-native-paper";
+import { data } from "../../src/video/constain";
 
 const BottomTab = createBottomTabNavigator();
 
 export default function Profile() {
   return (
-    <View styles={styles.container}>
+    <View style={styles.container}>
       <View style={styles.navbar}>
         <TouchableOpacity>
           <AntDesign name="adduser" size={26} color="black" />
@@ -23,7 +31,7 @@ export default function Profile() {
           style={styles.text1}
         />
         <TouchableOpacity>
-          <Feather name="menu" size={22} style={styles.text2} />
+          <Entypo name="dots-three-horizontal" size={24} color="black" />
         </TouchableOpacity>
       </View>
       <View style={styles.userName}>
@@ -32,15 +40,21 @@ export default function Profile() {
       </View>
       <View style={styles.counterCount}>
         <View style={styles.counterItems}>
-          <Text style={styles.countText}>14</Text>
+          <TouchableOpacity>
+            <Text style={styles.countText}>14</Text>
+          </TouchableOpacity>
           <Text style={styles.countLabel}>Following</Text>
         </View>
         <View style={styles.counterItems}>
-          <Text style={styles.countText}>38</Text>
+          <TouchableOpacity>
+            <Text style={styles.countText}>38</Text>
+          </TouchableOpacity>
           <Text style={styles.countLabel}>Followers</Text>
         </View>
         <View style={styles.counterItems}>
-          <Text style={styles.countText}>91</Text>
+          <TouchableOpacity>
+            <Text style={styles.countText}>91</Text>
+          </TouchableOpacity>
           <Text style={styles.countLabel}>Likes</Text>
         </View>
       </View>
@@ -63,6 +77,30 @@ export default function Profile() {
           </TouchableOpacity>
         </View>
       </View>
+      <View style={styles.bioContainer}>
+        <TouchableOpacity>
+          <Text style={styles.bioText}>To tap add bio</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.listContainer}>
+        <Feather name="menu" size={22} />
+        <Ionicons name="heart-outline" size={24} color="black" />
+      </View>
+      <View style={styles.underLine}>
+        <Text style={{ fontWeight: "bold", fontSize: 10, marginTop: "-10px" }}>
+          __________
+        </Text>
+      </View>
+      <FlatList
+        data={data}
+        numColumns={3}
+        renderItem={({ item }) => (
+          <Image
+            source={item.avatarUri}
+            style={{ width: 100, height: 200, flex: 1 / 3 }}
+          />
+        )}
+      />
     </View>
   );
 }
