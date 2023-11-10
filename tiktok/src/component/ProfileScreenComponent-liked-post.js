@@ -11,7 +11,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 
 
-export default function Profile() {
+export default function Profile({navigation}) {
   return (
     <View style={styles.container}>
     <View style={styles.navbar}>
@@ -68,7 +68,7 @@ export default function Profile() {
       </TouchableOpacity>
     </View>
     <View style={styles.listContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Screen1")}>
         <Feather name="menu" size={22}/>  
       </TouchableOpacity>
       <TouchableOpacity>
@@ -79,13 +79,7 @@ export default function Profile() {
         <Text style={{ fontWeight: 'bold', fontSize:10, marginTop:'-10px'}}>__________</Text>
         
     </View>
-    <FlatList
-        data={data}
-        numColumns={3}
-        renderItem={({ item}) => (
-        <Image source={item.avatarUri} style={{ width: 100, height: 200, flex: 1/3}}/>
-        )}
-      />
+    
   </View>
   )
 }

@@ -11,7 +11,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 
 
-export default function Profile() {
+export default function Profile({navigation}) {
   return (
     <View style={styles.container}>
     <View style={styles.navbar}>
@@ -71,7 +71,7 @@ export default function Profile() {
       <TouchableOpacity>
         <Feather name="menu" size={22}/>  
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Screen2")}>
         <Ionicons name="heart-outline" size={24} color="black" />
       </TouchableOpacity>
     </View>
