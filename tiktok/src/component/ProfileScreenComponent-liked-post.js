@@ -77,6 +77,7 @@ export default function Profile() {
     </View>
     <View style={styles.underLine}>
         <Text style={{ fontWeight: 'bold', fontSize:10, marginTop:'-10px'}}>__________</Text>
+        
     </View>
     <FlatList
         data={data}
@@ -186,7 +187,7 @@ const styles = StyleSheet.create({
     },
     underLine:{
       backgroundColor:'white',
-      paddingLeft: 77,
+      paddingLeft: 270,
       paddingBottom: 5,
       borderBottomWidth: 1,
       borderColor: 'black',

@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useState } from "react";
 import { FlatList, Image, StyleSheet } from "react-native";
 import ProfileScreenComponent from "./src/component/ProfileScreenComponent";
+import ProfileScreenComponentlikedpost from "./src/component/ProfileScreenComponent-liked-post";
 import VideoItem from "./src/component/VideoItem";
 import { data, windowHeight } from "./src/video/constain";
 

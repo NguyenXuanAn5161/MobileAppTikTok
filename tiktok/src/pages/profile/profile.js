@@ -16,8 +16,8 @@ function Profile() {
   ];
   const avatar = [
     {
-      image: require("../../assets/image/avatar_Naruto.png"),
-      video: require("../../assets/video/KAKA.mp4"),
+      image: require("../../../assets/images/avatar_Naruto.png"),
+      video: require("../../../assets/video/KAKA.mp4"),
     },
   ];
   const [information, setInformation] = useState([
