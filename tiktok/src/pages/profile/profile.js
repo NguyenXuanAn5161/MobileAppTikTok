@@ -6,7 +6,9 @@ import Avatar from "./avatar";
 import Information from "./information";
 import styles from "./style";
 
+
 function Profile() {
+  
   const header = [
     {
       iconLeft: FaAngleLeft,
@@ -16,8 +18,8 @@ function Profile() {
   ];
   const avatar = [
     {
-      image: require("../../assets/image/avatar_Naruto.png"),
-      video: require("../../assets/video/KAKA.mp4"),
+      image: require("../../../assets/images/avatar_Naruto.png"),
+      video: require("../../../assets/images/avatar_Naruto.png"),
     },
   ];
   const [information, setInformation] = useState([
@@ -50,7 +52,7 @@ function Profile() {
         {header.map((header, index) => (
           <Header
             key={index}
-            iconLeft={header.iconLeft}
+            iconLeft={header.iconLeft} 
             title={header.title}
             iconRight={header.iconRight}
           />

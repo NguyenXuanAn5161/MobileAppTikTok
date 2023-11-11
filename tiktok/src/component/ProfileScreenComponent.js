@@ -33,13 +33,12 @@ export default function Profile() {
           style={styles.text1}
         />
         <TouchableOpacity
-          onPress={() => {
-            // navigation.navigate("Setting");
-          }}
+          onPress={() => navigation.navigate("EditProfile")}
         >
           <Entypo name="dots-three-horizontal" size={24} color="black" />
         </TouchableOpacity>
       </View>
+
       <View style={styles.userName}>
         <Avatar.Icon size={80} icon={"account"} />
         <Text style={styles.accountText}>@xuanan</Text>
@@ -124,6 +123,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     flex: 1,
     justifyContent: "space-between",
+    height: 100,
   },
   text: {
     fontSize: 19,

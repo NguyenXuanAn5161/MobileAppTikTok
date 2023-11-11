@@ -3,15 +3,32 @@ import {
   useBottomTabBarHeight,
 } from "@react-navigation/bottom-tabs";
 import { Video } from "expo-av";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Animated, Easing, Image, StyleSheet, Text, View } from "react-native";
 import { windowHeight, windowWidth } from "../video/constain";
 import { getMusicNoteAnimation } from "./Utils";
+import { TouchableOpacity } from "react-native-web";
 
 const BottomTab = createBottomTabNavigator();
 
 export default function VideoItem({ data, isActive }) {
-  const { uri, caption, channelName, musicName, avatarUri, likes, comments } =
+  const { likes: initialLikes } = data;
+  const [ likes, setLikes] = useState(initialLikes);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const handleLikePress = () => {
+    if (!isLiked) {
+      // If not liked, increment likes
+      setLikes(likes + 1);
+    } else {
+      // If liked, decrement likes
+      setLikes(likes - 1);
+    }
+
+    // Toggle liked state
+    setIsLiked(!isLiked);
+  };
+  const { uri, caption, channelName, musicName, avatarUri, comments } =
     data;
 
   const discAnimatedValue = useRef(new Animated.Value(0)).current;
@@ -146,11 +163,16 @@ export default function VideoItem({ data, isActive }) {
 
         {/* nut tim */}
         <View style={styles.verticalBarItem}>
-          <Image
-            source={require("../../assets/images/heart.png")}
-            style={[styles.verticalBarIcon]}
-          />
-          <Text style={styles.verticalBarText}>{likes}</Text>
+          <TouchableOpacity onPress={handleLikePress}>
+            <Image
+              source={
+                isLiked ? require("../../assets/images/heartfull.png") : require("../../assets/images/heart.png")
+              }
+              style={[styles.verticalBarIcon]}
+            />
+            <Text style={styles.verticalBarText}>{likes}</Text>
+          </TouchableOpacity>
+          
         </View>
 
         {/* nut comment  */}
