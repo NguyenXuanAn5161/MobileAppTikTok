@@ -5,9 +5,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Feather} from '@expo/vector-icons'
 import {Avatar} from 'react-native-paper'
 import { AntDesign, MaterialIcons, Ionicons, Entypo} from '@expo/vector-icons'
-import VideoItem from "./VideoItem";
+import VideoItem from "./VideoItem-profile";
 import { data, windowHeight } from "../video/constain";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Video } from 'expo-av';
 
 
 
@@ -79,12 +80,12 @@ export default function Profile({navigation}) {
         <Text style={{ fontWeight: 'bold', fontSize:10, marginTop:'-10px'}}>__________</Text>
     </View>
     <FlatList
-        data={data}
-        numColumns={3}
-        renderItem={({ item}) => (
-        <Image source={item.avatarUri} style={{ width: 100, height: 200, flex: 1/3}}/>
-        )}
-      />
+          data={data}
+          numColumns={3}
+          renderItem={({ item}) => (
+          <VideoItem data={item}/>
+          )}
+        />
   </View>
   )
 }
