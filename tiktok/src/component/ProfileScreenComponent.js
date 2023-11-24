@@ -7,6 +7,7 @@ import {Avatar} from 'react-native-paper'
 import { AntDesign, MaterialIcons, Ionicons, Entypo} from '@expo/vector-icons'
 import VideoItem from "./VideoItem-profile";
 import { data, windowHeight } from "../video/constain";
+import {UserData} from '../data/Data'
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Video } from 'expo-av';
 
@@ -20,7 +21,12 @@ export default function Profile({navigation}) {
         <AntDesign name="adduser" size={26} color="black" />
       </TouchableOpacity>
       <TouchableOpacity>
-        <Text style={styles.text}>Xuan An</Text>
+      <FlatList
+          data={UserData}
+          renderItem={({ item}) => (
+        	<Text style={styles.text}>{item.name}</Text>
+          )}
+        />
         </TouchableOpacity>
         <AntDesign name="caretdown" size={10} color="black" style={styles.text1}/>
       <TouchableOpacity>
@@ -29,24 +35,44 @@ export default function Profile({navigation}) {
     </View>
     <View style={styles.userName}>
       <Avatar.Icon size={80} icon={"account"}/>
-      <Text style={styles.accountText}>@xuanan</Text>
+      <FlatList
+          data={UserData}
+          renderItem={({ item}) => (
+        	<Text style={styles.accountText}>@{item.id}</Text>
+          )}
+        />
     </View>
     <View style={styles.counterCount}>
       <View style={styles.counterItems}>
         <TouchableOpacity>
-        <Text style={styles.countText}>14</Text>
+        <FlatList
+          data={UserData}
+          renderItem={({ item}) => (
+        	<Text style={styles.countText}>{item.following}</Text>
+          )}
+        />
         </TouchableOpacity>
         <Text style={styles.countLabel}>Following</Text>
       </View>
       <View style={styles.counterItems}>
         <TouchableOpacity>
-        <Text style={styles.countText}>38</Text>
+        <FlatList
+          data={UserData}
+          renderItem={({ item}) => (
+        	<Text style={styles.countText}>{item.follower}</Text>
+          )}
+        />
         </TouchableOpacity>
         <Text style={styles.countLabel}>Followers</Text>
       </View>
       <View style={styles.counterItems}>
         <TouchableOpacity>
-        <Text style={styles.countText}>91</Text>
+        <FlatList
+          data={UserData}
+          renderItem={({ item}) => (
+        	<Text style={styles.countText}>{item.like}</Text>
+          )}
+        />
         </TouchableOpacity>
         <Text style={styles.countLabel}>Likes</Text>
       </View>
